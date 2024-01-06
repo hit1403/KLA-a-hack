@@ -62,10 +62,47 @@ print("r0 -->",restaurant_dist)
 for i,n in enumerate(neighbour_dist):
     print(i,"--->",n,"\n")
 
-visited=[]
 
-first_visit = restaurant_dist.index(min(restaurant_dist))
-print(first_visit)
+visited=[]
+path = []
+path.append(-1)
+visit = restaurant_dist.index(min(restaurant_dist))
+print(visit)
+
+
+def nearest_neighbor(graph):
+    n = len(graph)
+    unvisited = set(range(1, n))  # Neighbouring locations excluding r0
+    current_vertex = 0  # Starting at r0
+
+    path = [current_vertex]
+
+    while unvisited:
+        # Check if current_vertex is valid
+        if current_vertex >= n:
+            break
+
+        nearest_neighbor = min(unvisited, key=lambda neighbor: graph[current_vertex])
+        path.append(nearest_neighbor)
+        unvisited.remove(nearest_neighbor)
+        current_vertex = nearest_neighbor
+
+    path.append(0)  # Return to r0 to complete the cycle
+    return path
+
+# Given graph (distances between locations)
+graph=[]
+graph.append(restaurant_dist)
+for o in neighbour_dist:
+    graph.append(o)
+#graph =  neighbour_dist.insert()
+print(len(graph))
+min_path_cycle = nearest_neighbor(graph)
+
+print("Minimum path cycle:", min_path_cycle)
+
+
+
 
 
 
