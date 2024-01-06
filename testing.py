@@ -6,6 +6,7 @@ def nearest_neighbor(graph):
     current_vertex = 0  # Starting at r0
     path = [current_vertex]
 
+
     while unvisited:
         # Check if current_vertex is valid
         if current_vertex >= n:
@@ -46,10 +47,7 @@ for i, v in idata.items():
                     neighbour_dist.append(v3)
 
 print("r0 -->", restaurant_dist)
-"""
-for i, n in enumerate(neighbour_dist):
-    print(i, "--->", n)
-"""
+
 visited = []
 path = []
 path.append(-1)
